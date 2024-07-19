@@ -1,6 +1,9 @@
 package heranca
 
-import "time"
+import (
+	"errors"
+	"time"
+)
 
 type Compra struct {
 	Mercado string
@@ -12,11 +15,16 @@ type ItemCompra struct {
 	Nome string
 }
 
- func NewCompra(mercado string, data time.Time, nomeDoitens [] string) *Compra {
+ func NewCompra(mercado string, data time.Time, nomeDoitens [] string) (*Compra, error) {
 	var itens []ItemCompra
+
 
 	for _ , nome := range nomeDoitens {
 		itens = append(itens, ItemCompra{Nome: nome})
 	}
-	return &Compra { Mercado: mercado, Data: data, Items: itens}
+
+	if mercado == "" || len(nomeDoitens) == 0 {
+		return nil, errors.New("mercado é obrigatório!")
+	}
+	return &Compra { Mercado: mercado, Data: data, Items: itens}, nil
  }

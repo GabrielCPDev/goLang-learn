@@ -48,8 +48,11 @@ func main() {
 	itens = append(itens, "feijão")
 	itens = append(itens, "Carne")
 
+	compra, err := heranca.NewCompra("Mercado A", time.Now(), itens)
+	if err != nil {
+		fmt.Println(err.Error())
 
-	compra := heranca.NewCompra("Mercado A", time.Now(), itens)
-
-	fmt.Println(compra)
+	} else {
+		fmt.Println(compra)
+	}
 }
