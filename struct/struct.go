@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"goland/composicao"
 	"goland/encapsulamento"
+	"goland/heranca"
 	"time"
 )
 
@@ -25,6 +26,30 @@ func main() {
 	fmt.Println(endereco)
 	fmt.Println(pessoa)
 	pessoa.CalculaIdade()
-	
+
 	fmt.Println("Idade: ", pessoa.Idade)
+
+	autoMoto := heranca.Automovel{
+		Ano:    2022,
+		Placa:  "XPTO",
+		Modelo: "XPTO",
+	}
+
+	moto := heranca.Moto{
+		Automovel:   autoMoto,
+		Cilindradas: 250,
+	}
+
+	fmt.Println(moto)
+
+	var itens []string
+
+	itens = append(itens, "Arroz")
+	itens = append(itens, "feijão")
+	itens = append(itens, "Carne")
+
+
+	compra := heranca.NewCompra("Mercado A", time.Now(), itens)
+
+	fmt.Println(compra)
 }
