@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"goland/composicao"
 	"goland/encapsulamento"
 )
 
@@ -13,6 +14,11 @@ func main() {
 		Numero: 20,
 		Cidade: "Asgard",
 	}
+	
+	pessoa := composicao.Pessoa {
+		Nome: "Oscar",
+		Endereco: endereco,
+	}
 
-	fmt.Println(endereco)
+	fmt.Println(pessoa)
 }
