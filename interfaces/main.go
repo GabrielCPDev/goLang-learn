@@ -40,9 +40,33 @@ func main() {
 
 	ExibeErro(errors.New("teste"))
 
-	p := ProblemaDeNetwork{ rede: true, hardware: false}
+	p := ProblemaDeNetwork{rede: true, hardware: false}
 
 	ExibeErro(p)
+
+	fmt.Println("====== Interface vazia ======")
+
+	var a interface{}
+
+	a = 5
+
+	fmt.Println(a)
+
+	a = circulo
+
+	fmt.Println(a)
+
+	var lista []interface{}
+
+	lista = append(lista, true)
+	lista = append(lista, retangulo)
+	lista = append(lista, 100)
+	lista = append(lista, "teste")
+
+	for _, valor := range lista {
+		fmt.Println(valor)
+
+	}
 
 }
 
