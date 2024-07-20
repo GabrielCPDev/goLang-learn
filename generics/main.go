@@ -14,7 +14,9 @@ func main() {
 
 }
 
-func reverse[T int | string](slice []T) []T {
+type constraintCustom interface{}
+
+func reverse[T constraintCustom](slice []T) []T {
 	newInt := make([]T, len(slice))
 
 	sliceSize := len(slice) - 1
