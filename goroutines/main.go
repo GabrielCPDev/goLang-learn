@@ -2,17 +2,28 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"sync"
 )
 
 func main() {
+	var wg sync.WaitGroup
+	wg.Add(3)
+	go ShowMessage(&wg)
+	go CallApi(&wg)
+	go CallDatabase(&wg)
 
-	for i := 0; i<10 ; i++ {
-		go ShowMessage(strconv.Itoa(i))
-	}
-
+	wg.Wait()
 }
 
-func ShowMessage(message string) {
-	fmt.Println(message)
+func ShowMessage(wg *sync.WaitGroup) {
+	fmt.Println("ShowMessage")
+	wg.Done()
+}
+func CallApi( wg *sync.WaitGroup) {
+	fmt.Println("CallApi")
+	wg.Done()
+}
+func CallDatabase( wg *sync.WaitGroup) {
+	fmt.Println("CallDatabase")
+	wg.Done()
 }
