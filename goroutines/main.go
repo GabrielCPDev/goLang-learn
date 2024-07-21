@@ -3,27 +3,28 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(3)
-	go ShowMessage(&wg)
-	go CallApi(&wg)
-	go CallDatabase(&wg)
 
-	wg.Wait()
+	var m sync.Mutex
+
+	i := 0
+
+	for x := 0; x < 1000; x++ {
+		go func () {
+			m.Lock()
+			i++
+			m.Unlock()
+		}()
+	}
+
+	time.Sleep(time.Second * 5)
+
+	fmt.Println(i)
 }
 
-func ShowMessage(wg *sync.WaitGroup) {
-	fmt.Println("ShowMessage")
-	wg.Done()
-}
-func CallApi( wg *sync.WaitGroup) {
-	fmt.Println("CallApi")
-	wg.Done()
-}
-func CallDatabase( wg *sync.WaitGroup) {
-	fmt.Println("CallDatabase")
-	wg.Done()
+func ChangeNumber(i *int, newNumber int) {
+	*i = newNumber
 }
